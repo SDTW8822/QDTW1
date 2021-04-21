@@ -2,38 +2,38 @@
 #include <string.h>
 #define MAX_len 10
 #define N 30
-void Readscore(int score[], long num[], char name[][MAX_len], int n);		                    /*¶ÁÈëÑ§ÉúÑ§ºÅ¡¢ĞÕÃûºÍ³É¼¨*/
-void T_Ascore(int n, int score[]);					                            /*¼ÆËã×Ü³É¼¨ºÍÆ½¾ù³É¼¨*/
-void PrintScore(long num[], int score[], char name[][MAX_len], int n);                           /*´òÓ¡Ñ§ºÅºÍ³É¼¨*/
-void SelectionScore(int num[], int score[], char name[][MAX_len], int n, int (*compare)(int a, int b)); /*º¯ÊıÖ¸Õë*/
-int Ascending(int a, int b);                                                           /*Ê¹º¯Êı°´ÕÕÉıĞòÅÅÁĞ*/
-int Descending(int a, int b);                                                       /*Ê¹º¯Êı°´ÕÕ½µĞòÅÅÁĞ*/
-void Swapchar(char a[], char[]);                                                       /*½»»»Á½¸ö×Ö·ûÊı×éÊı¾İ*/
-void  Swapint(int* a, int* b);                                                /*½»»»Á½¸öÕûĞÍÊı¾İ*/
-void ASsortbynum(long num[], int score[], char name[][MAX_len], int n, int (*nunn)(int a, int b));/*½«Ñ§ºÅ°´ÕÕ´ÓĞ¡µ½´óÅÅĞò*/
-void Searchbynum(long num[], char name[][MAX_len], int score[], int n);                        /*°´ÕÕÑ§ºÅ²éÑ¯Êı¾İ*/
-void StatisticAnalysis(int score[], int n);                                     /*Í³¼Æ¸÷¸öÀà±ğµÄÈËÊıÒÔ¼°ËùÕ¼±ÈÀı*/
-void Searchbyname(long num[], int score[], char name[][MAX_len], int n);   /*°´ÕÕÑ§ÉúĞÕÃû²éÕÒÑ§Éú³É¼¨ĞÅÏ¢*/
-void ASsortbynameD(long num[], int score[], char name[][MAX_len], int n);/*°´ÕÕÑ§Éú×Öµä½øĞĞÅÅĞò*/
+void Readscore(int score[], long num[], char name[][MAX_len], int n);		                    /*è¯»å…¥å­¦ç”Ÿå­¦å·ã€å§“åå’Œæˆç»©*///å“ˆå“ˆå“ˆå“ˆ
+void T_Ascore(int n, int score[]);					                            /*è®¡ç®—æ€»æˆç»©å’Œå¹³å‡æˆç»©*/
+void PrintScore(long num[], int score[], char name[][MAX_len], int n);                           /*æ‰“å°å­¦å·å’Œæˆç»©*/
+void SelectionScore(int num[], int score[], char name[][MAX_len], int n, int (*compare)(int a, int b)); /*å‡½æ•°æŒ‡é’ˆ*/
+int Ascending(int a, int b);                                                           /*ä½¿å‡½æ•°æŒ‰ç…§å‡åºæ’åˆ—*/
+int Descending(int a, int b);                                                       /*ä½¿å‡½æ•°æŒ‰ç…§é™åºæ’åˆ—*/
+void Swapchar(char a[], char[]);                                                       /*äº¤æ¢ä¸¤ä¸ªå­—ç¬¦æ•°ç»„æ•°æ®*/
+void  Swapint(int* a, int* b);                                                /*äº¤æ¢ä¸¤ä¸ªæ•´å‹æ•°æ®*/
+void ASsortbynum(long num[], int score[], char name[][MAX_len], int n, int (*nunn)(int a, int b));/*å°†å­¦å·æŒ‰ç…§ä»å°åˆ°å¤§æ’åº*/
+void Searchbynum(long num[], char name[][MAX_len], int score[], int n);                        /*æŒ‰ç…§å­¦å·æŸ¥è¯¢æ•°æ®*/
+void StatisticAnalysis(int score[], int n);                                     /*ç»Ÿè®¡å„ä¸ªç±»åˆ«çš„äººæ•°ä»¥åŠæ‰€å æ¯”ä¾‹*/
+void Searchbyname(long num[], int score[], char name[][MAX_len], int n);   /*æŒ‰ç…§å­¦ç”Ÿå§“åæŸ¥æ‰¾å­¦ç”Ÿæˆç»©ä¿¡æ¯*/
+void ASsortbynameD(long num[], int score[], char name[][MAX_len], int n);/*æŒ‰ç…§å­¦ç”Ÿå­—å…¸è¿›è¡Œæ’åº*/
 
 int main(void)
 {
-    int score[N], n, sum, average, c;			                     //±äÁ¿½âÊÍ£ºnÊÇÑ§ÉúÈËÊı£¬sumÊÇÑ§Éú×Ü³É¼¨£¬averageÊÇÑ§ÉúÆ½¾ù³É¼¨,cÊÇÓÃ»§¹¦ÄÜÑ¡Ïî
+    int score[N], n, sum, average, c;			                     //å˜é‡è§£é‡Šï¼šnæ˜¯å­¦ç”Ÿäººæ•°ï¼Œsumæ˜¯å­¦ç”Ÿæ€»æˆç»©ï¼Œaverageæ˜¯å­¦ç”Ÿå¹³å‡æˆç»©,cæ˜¯ç”¨æˆ·åŠŸèƒ½é€‰é¡¹
     long int num[N];
-    char name[N][MAX_len];                                         //¶¨ÒåÒ»¸öÊäÈëÑ§ÉúĞÕÃûµÄ×Ö·ûÊı×é
+    char name[N][MAX_len];                                         //å®šä¹‰ä¸€ä¸ªè¾“å…¥å­¦ç”Ÿå§“åçš„å­—ç¬¦æ•°ç»„
 
     printf("Please input the total students number:");
-    scanf("%d", &n); 							                                        /*´Ó¼üÅÌ¶ÁÈëÑ§ÉúÈËÊı*/
-    printf("*************************1.Input record\n");                                                     //Ñ¡Ïî1£ºÊäÈëÑ§ÉúÑ§ºÅ¡¢ĞÕÃûºÍÑ§Éú³É¼¨
-    printf("*************************2.Caculate totel and average score of course\n");         //Ñ¡Ïî2£º¼ÆËãÑ§Éú×Ü³É¼¨ºÍÆ½¾ù³É¼¨
-    printf("*************************3.Sort in descending order by score\n");                      //Ñ¡Ïî3£º°´ÕÕ³É¼¨ÓÉ¸ßµ½µÍÅÅ³öÃû´Î±í
-    printf("*************************4.Sort in ascending order by score\n");                        //Ñ¡Ïî4£º°´ÕÕ³É¼¨ÓÉµÍµ½¸ßÅÅ³öÃû´Î±í
-    printf("************************5.Sort in ascending order by number\n");                   //Ñ¡Ïî5£º°´ÕÕÑ§ºÅÓÉµÍµ½¸ßÅÅ³öÃû´Î±í
-    printf("*************************6.Search by number\n");                                             //Ñ¡Ïî6£º²éÑ¯Ñ§ºÅĞÅÏ¢
-    printf("*************************7.Statistic analysis\n");                                               //Ñ¡Ïî7£ºÍ³¼ÆÀà±ğÈËÊıÒÔ¼°ËùÕ¼ÈËÊı±ÈÀı
-    printf("*************************8.List record\n");                                                       //Ñ¡Ïî8£ºÊä³öÃ¿¸öÑ§ÉúµÄÑ§ºÅ¿¼ÊÔ³É¼¨ÒÔ¼°¿Î³Ì×Ü·ÖºÍÆ½¾ù·Ö
-    printf("*************************.Sarch by name \n");                                                  //Ñ¡Ïî9£º°´ÕÕÑ§ÉúĞÕÃû²éÕÒ³É¼¨ĞÅÏ¢
-    printf("*************************.Sarch by name dictionary \n");                                    //Ñ¡Ïî10£º°´ÕÕÑ§ÉúĞÕÃû×ÖµäÅÅĞòÑ§Éú³É¼¨
+    scanf("%d", &n); 							                                        /*ä»é”®ç›˜è¯»å…¥å­¦ç”Ÿäººæ•°*/
+    printf("*************************1.Input record\n");                                                     //é€‰é¡¹1ï¼šè¾“å…¥å­¦ç”Ÿå­¦å·ã€å§“åå’Œå­¦ç”Ÿæˆç»©
+    printf("*************************2.Caculate totel and average score of course\n");         //é€‰é¡¹2ï¼šè®¡ç®—å­¦ç”Ÿæ€»æˆç»©å’Œå¹³å‡æˆç»©
+    printf("*************************3.Sort in descending order by score\n");                      //é€‰é¡¹3ï¼šæŒ‰ç…§æˆç»©ç”±é«˜åˆ°ä½æ’å‡ºåæ¬¡è¡¨
+    printf("*************************4.Sort in ascending order by score\n");                        //é€‰é¡¹4ï¼šæŒ‰ç…§æˆç»©ç”±ä½åˆ°é«˜æ’å‡ºåæ¬¡è¡¨
+    printf("************************5.Sort in ascending order by number\n");                   //é€‰é¡¹5ï¼šæŒ‰ç…§å­¦å·ç”±ä½åˆ°é«˜æ’å‡ºåæ¬¡è¡¨
+    printf("*************************6.Search by number\n");                                             //é€‰é¡¹6ï¼šæŸ¥è¯¢å­¦å·ä¿¡æ¯
+    printf("*************************7.Statistic analysis\n");                                               //é€‰é¡¹7ï¼šç»Ÿè®¡ç±»åˆ«äººæ•°ä»¥åŠæ‰€å äººæ•°æ¯”ä¾‹
+    printf("*************************8.List record\n");                                                       //é€‰é¡¹8ï¼šè¾“å‡ºæ¯ä¸ªå­¦ç”Ÿçš„å­¦å·è€ƒè¯•æˆç»©ä»¥åŠè¯¾ç¨‹æ€»åˆ†å’Œå¹³å‡åˆ†
+    printf("*************************.Sarch by name \n");                                                  //é€‰é¡¹9ï¼šæŒ‰ç…§å­¦ç”Ÿå§“åæŸ¥æ‰¾æˆç»©ä¿¡æ¯
+    printf("*************************.Sarch by name dictionary \n");                                    //é€‰é¡¹10ï¼šæŒ‰ç…§å­¦ç”Ÿå§“åå­—å…¸æ’åºå­¦ç”Ÿæˆç»©
     printf("*************************0.Exit\n");
     printf("Please enter your choice:\n");
     printf("\n");
@@ -89,7 +89,7 @@ int main(void)
 
 
 
-/*º¯Êı¹¦ÄÜ£º¼üÅÌÊäÈëÑ§ÉúµÄÑ§ºÅĞÕÃûºÍ³É¼¨*/
+/*å‡½æ•°åŠŸèƒ½ï¼šé”®ç›˜è¾“å…¥å­¦ç”Ÿçš„å­¦å·å§“åå’Œæˆç»©*/
 void Readscore(int score[], long num[], char name[][MAX_len], int n)
 {
     int i, j;
@@ -111,7 +111,7 @@ void Readscore(int score[], long num[], char name[][MAX_len], int n)
     }
 }
 
-/*º¯Êı¹¦ÄÜ£º´òÓ¡Ñ§Éú×Ü³É¼¨ºÍÆ½¾ù³É¼¨*/
+/*å‡½æ•°åŠŸèƒ½ï¼šæ‰“å°å­¦ç”Ÿæ€»æˆç»©å’Œå¹³å‡æˆç»©*/
 void T_Ascore(int n, int score[])
 {
     int sum = 0, totalscore, averagescore;
@@ -124,7 +124,7 @@ void T_Ascore(int n, int score[])
 }
 
 
-/*º¯Êı¹¦ÄÜ£º´òÓ¡Ã¿¸öÍ¬Ñ§µÄĞÕÃû¡¢Ñ§ºÅºÍ³É¼¨*/
+/*å‡½æ•°åŠŸèƒ½ï¼šæ‰“å°æ¯ä¸ªåŒå­¦çš„å§“åã€å­¦å·å’Œæˆç»©*/
 void PrintScore(long num[], int score[], char name[][MAX_len], int n)
 {
     int i;
@@ -135,7 +135,7 @@ void PrintScore(long num[], int score[], char name[][MAX_len], int n)
         printf("\t%s%10ld%4d\n", p[i], num[i], score[i]);
     }
 }
-/*º¯Êı¹¦ÄÜ£ºÁ½¸ö×Ö·ûÊı×éµÄ½»»»*/
+/*å‡½æ•°åŠŸèƒ½ï¼šä¸¤ä¸ªå­—ç¬¦æ•°ç»„çš„äº¤æ¢*/
 void Swapchar(char a[], char b[])
 {
     char t[N];
@@ -146,7 +146,7 @@ void Swapchar(char a[], char b[])
 
 
 }
-/*º¯Êı¹¦ÄÜ£ºÁ½¸öÕûÊıÖµµÄ½»»»*/
+/*å‡½æ•°åŠŸèƒ½ï¼šä¸¤ä¸ªæ•´æ•°å€¼çš„äº¤æ¢*/
 void Swapint(int* a, int* b)
 {
     int temp;
@@ -154,7 +154,7 @@ void Swapint(int* a, int* b)
     *a = *b;
     *b = temp;
 }
-/*º¯Êı¹¦ÄÜ£ºµ÷ÓÃº¯ÊıÖ¸ÕëcompareÖ¸ÏòµÄº¯ÊıÊµÏÖ¶ÔÊı×éscoreµÄ½»»»ÅÅĞò*/
+/*å‡½æ•°åŠŸèƒ½ï¼šè°ƒç”¨å‡½æ•°æŒ‡é’ˆcompareæŒ‡å‘çš„å‡½æ•°å®ç°å¯¹æ•°ç»„scoreçš„äº¤æ¢æ’åº*/
 
 void SelectionScore(int num[], int score[], char name[][MAX_len], int n, int (*compare)(int a, int b))
 {
@@ -179,20 +179,20 @@ void SelectionScore(int num[], int score[], char name[][MAX_len], int n, int (*c
     }
 }
 
-/*º¯Êı¹¦ÄÜ£ºÊ¹Êı¾İ°´ÕÕÉıĞòÅÅÁĞ*/
+/*å‡½æ•°åŠŸèƒ½ï¼šä½¿æ•°æ®æŒ‰ç…§å‡åºæ’åˆ—*/
 int Ascending(int a, int b)
 {
     return  a < b;
 }
 
 
-/*º¯Êı¹¦ÄÜ£ºÊ¹Êı¾İÊµÏÖ½µĞòÅÅÁĞ*/
+/*å‡½æ•°åŠŸèƒ½ï¼šä½¿æ•°æ®å®ç°é™åºæ’åˆ—*/
 int Descending(int a, int b)
 {
     return a > b;
 }
 
-/*º¯Êı¹¦ÄÜ£ºÑ§ºÅ°´ÕÕ´ÓĞ¡µ½´óÅÅĞò*/
+/*å‡½æ•°åŠŸèƒ½ï¼šå­¦å·æŒ‰ç…§ä»å°åˆ°å¤§æ’åº*/
 void ASsortbynum(long num[], int score[], char name[][MAX_len], int n, int (*nunn)(int a, int b))
 {
     int i, j, k;
@@ -216,7 +216,7 @@ void ASsortbynum(long num[], int score[], char name[][MAX_len], int n, int (*nun
 
 
 
-/*º¯Êı¹¦ÄÜ£º°´ÕÕÑ§ºÅ²éÕÒ³É¼¨ĞÅÏ¢*/
+/*å‡½æ•°åŠŸèƒ½ï¼šæŒ‰ç…§å­¦å·æŸ¥æ‰¾æˆç»©ä¿¡æ¯*/
 void Searchbynum(long num[], char name[][MAX_len], int score[], int n)
 
 {
@@ -241,7 +241,7 @@ void Searchbynum(long num[], char name[][MAX_len], int score[], int n)
 
     }
 
-    printf("This ID :%ld\t  name is :%s \t score is :%d \t  Ãû´Î£º%d\n", num[think], name[think], score[think], think + 1);
+    printf("This ID :%ld\t  name is :%s \t score is :%d \t  åæ¬¡ï¼š%d\n", num[think], name[think], score[think], think + 1);
 
 }
 
@@ -249,7 +249,7 @@ void Searchbynum(long num[], char name[][MAX_len], int score[], int n)
 
 
 
-/*°´ÕÕÑ§ÉúĞÕÃû²éÕÒÑ§Éú³É¼¨ĞÅÏ¢*/
+/*æŒ‰ç…§å­¦ç”Ÿå§“åæŸ¥æ‰¾å­¦ç”Ÿæˆç»©ä¿¡æ¯*/
 void Searchbyname(long num[], int score[], char name[][MAX_len], int n)
 {
     int i, think, cishu = 0;
@@ -274,11 +274,11 @@ void Searchbyname(long num[], int score[], char name[][MAX_len], int n)
 
     }
 
-    printf("This ID :%ld\t  name is :%s \t score is :%d \t  Ãû´Î£º%d\n", num[think], name[think], score[think], think + 1);
+    printf("This ID :%ld\t  name is :%s \t score is :%d \t  åæ¬¡ï¼š%d\n", num[think], name[think], score[think], think + 1);
 
 }
 
-/*º¯Êı¹¦ÄÜ£º°´ÕÕÑ§ÉúĞÕÃû×ÖµäË³ĞòÅÅÃû*/
+/*å‡½æ•°åŠŸèƒ½ï¼šæŒ‰ç…§å­¦ç”Ÿå§“åå­—å…¸é¡ºåºæ’å*/
 void ASsortbynameD(long num[], int score[], char name[][MAX_len], int n)
 {
     char(*p)[MAX_len];
@@ -305,7 +305,7 @@ void ASsortbynameD(long num[], int score[], char name[][MAX_len], int n)
 
 }
 
-/*º¯Êı¹¦ÄÜ£º¼ÆËã¸÷¸öÀà±ğµÄÑ§Éú³É¼¨×´¿ö*/
+/*å‡½æ•°åŠŸèƒ½ï¼šè®¡ç®—å„ä¸ªç±»åˆ«çš„å­¦ç”Ÿæˆç»©çŠ¶å†µ*/
 
 
 
@@ -335,5 +335,6 @@ void StatisticAnalysis(int score[], int n)
         }
     }
 
-    printf("±¾´Î³É¼¨Çé¿öÈçÏÂ£º\n ÓÅĞãÂÊ£º%1f %%\n Á¼ºÃÂÊ£º%1f %%\n ¼°¸ñÂÊ£º %1f %%  \n²»¼°¸ñÂÊ£º%1f %% \n", (float)vgod * 100 / n, (float)gods * 100 / n, (float)jige * 100 / n, (float)unjige * 100 / n);
+    printf("æœ¬æ¬¡æˆç»©æƒ…å†µå¦‚ä¸‹ï¼š\n ä¼˜ç§€ç‡ï¼š%1f %%\n è‰¯å¥½ç‡ï¼š%1f %%\n åŠæ ¼ç‡ï¼š %1f %%  \nä¸åŠæ ¼ç‡ï¼š%1f %% \n", (float)vgod * 100 / n, (float)gods * 100 / n, (float)jige * 100 / n, (float)unjige * 100 / n);
 }
+//å¼ ä¸‡é‘«ç¬¬ä¸€æ¬¡ä¿®æ”¹
