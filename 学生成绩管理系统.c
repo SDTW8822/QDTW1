@@ -2,7 +2,7 @@
 #include <string.h>
 #define MAX_len 10
 #define N 30
-void Readscore(int score[], long num[], char name[][MAX_len], int n);		                    /*读入学生学号、姓名和成绩*///哈哈哈哈
+void Readscore(int score[], long num[], char name[][MAX_len], int n);		                    /*读入学生学号、姓名和成绩*/
 void T_Ascore(int n, int score[]);					                            /*计算总成绩和平均成绩*/
 void PrintScore(long num[], int score[], char name[][MAX_len], int n);                           /*打印学号和成绩*/
 void SelectionScore(int num[], int score[], char name[][MAX_len], int n, int (*compare)(int a, int b)); /*函数指针*/
